@@ -13,7 +13,12 @@ class CondoinfoSpider(scrapy.Spider):
             yield {
                 'condo_prices': condo_entry.xpath(".//div[@class = 'styles___AskingPrice-sc-54qk44-4 dHPUdq']/text()").get(),
                 'condo_address': condo_entry.xpath(".//address[@class = 'styles___Address-sc-54qk44-13 gTwVlm']/text()").get(),
-                'condo_specs': condo_entry.xpath(".//div[@class = 'styles___InfoHolder-sc-54qk44-7 jtFhfz']/text()").get(),
+                #'condo_specs': condo_entry.xpath(".//div[@class = 'styles___InfoHolder-sc-54qk44-7 jtFhfz']/text()").get(),
+                'beds' : condo_entry.xpath(".//div[@class = 'styles___InfoHolder-sc-54qk44-7 jtFhfz']/child::node()[1]").get(),
+                'washrooms' : condo_entry.xpath(".//div[@class = 'styles___InfoHolder-sc-54qk44-7 jtFhfz']/child::node()[3]").get(),
+                'parking' : condo_entry.xpath(".//div[@class = 'styles___InfoHolder-sc-54qk44-7 jtFhfz']/child::node()[7]").get(),
+                'size' : condo_entry.xpath(".//div[@class = 'styles___Size-sc-54qk44-8 KRKbD']/text()").get(),
                 'maintenance_fees': condo_entry.xpath(".//div[@class = 'styles___MaintHolder-sc-54qk44-10 laUWhE']/div/text()")[1].get(),
                 'condo_ID': condo_entry.xpath(".//div[@class = 'styles___Mls-sc-54qk44-12 hRmahP']/text()")[1].get() 
+
             }
